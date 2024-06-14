@@ -62,5 +62,5 @@ from (
     Select num 
     from MyNumbers
     Group by num
-    Having count(*) = 1
+    Having count(*) = 1 /*Used to select groups that contain only one row, in this case used to select only num*/
 ) t
