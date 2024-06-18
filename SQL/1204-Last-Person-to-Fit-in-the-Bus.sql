@@ -1,3 +1,6 @@
+The idea is to arrange people according to their turn in ascending, and then gradually add up their weights until we find a person who, 
+if he or anyone after him ascends, will exceed the maximum weight.
+
 # Write your MySQL query statement below
 WITH CumulativeWeights AS (
     SELECT 
