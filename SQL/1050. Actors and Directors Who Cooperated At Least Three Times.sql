@@ -36,7 +36,7 @@ Output:
 Explanation: The only pair is (1, 1) where they cooperated exactly 3 times.
 
 # Write your MySQL query statement below
-select distinct actor_id, director_id
-from ActorDirector
-group by actor_id, director_id
-Having count(director_id) >= 3
+SELECT actor_id, director_id
+FROM ActorDirector
+GROUP BY actor_id, director_id
+HAVING COUNT(director_id) >= 3
