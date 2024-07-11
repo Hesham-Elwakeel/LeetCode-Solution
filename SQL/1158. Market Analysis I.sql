@@ -34,7 +34,6 @@ item_id is the primary key (column with unique values) of this table.
  
 Write a solution to find for each user, the join date and the number of orders they made as a buyer in 2019.
 Return the result table in any order.
-
 The result format is in the following example.
  
 Example 1:
