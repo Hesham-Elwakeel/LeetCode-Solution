@@ -9,7 +9,6 @@ Table: Users
 user_id is the primary key (column with unique values) of this table.
 This table has the info of the users of an online shopping website where users can sell and buy items.
  
-
 Table: Orders
 +---------------+---------+
 | Column Name   | Type    |
@@ -24,7 +23,6 @@ order_id is the primary key (column with unique values) of this table.
 item_id is a foreign key (reference column) to the Items table.
 buyer_id and seller_id are foreign keys to the Users table.
  
-
 Table: Items
 +---------------+---------+
 | Column Name   | Type    |
@@ -34,16 +32,12 @@ Table: Items
 +---------------+---------+
 item_id is the primary key (column with unique values) of this table.
  
-
 Write a solution to find for each user, the join date and the number of orders they made as a buyer in 2019.
 Return the result table in any order.
 
 The result format is in the following example.
-
  
-
 Example 1:
-
 Input: 
 Users table:
 +---------+------------+----------------+
