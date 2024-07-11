@@ -77,3 +77,13 @@ Output:
 | 3         | 2018-01-19 | 0              |
 | 4         | 2018-05-21 | 0              |
 +-----------+------------+----------------+
+
+# Write your MySQL query statement below
+SELECT
+  Users.user_id AS buyer_id,
+  Users.join_date,
+  COUNT(Orders.order_id) AS orders_in_2019
+FROM Users
+LEFT JOIN Orders
+  ON (Users.user_id = Orders.buyer_id AND YEAR(order_date) = '2019')
+GROUP BY user_id;
