@@ -29,8 +29,6 @@ Return the result table in any order.
 
 The result format is in the following example.
 
- 
-
 Example 1:
 
 Input: 
@@ -58,3 +56,10 @@ Output:
 Explanation: 
 There is no address in the address table for the personId = 1 so we return null in their city and state.
 addressId = 1 contains information about the address of personId = 2.
+
+
+# Write your MySQL query statement below
+select firstName, lastName , city, state
+from person p
+left join Address A
+on p.personID = A.personID
