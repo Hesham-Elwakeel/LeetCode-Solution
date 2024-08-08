@@ -12,7 +12,6 @@ This table contains information about the ID of some persons and their first and
  
 
 Table: Address
-
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
