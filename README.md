@@ -9,3 +9,5 @@ Created with :heart: by [LeetPush](https://github.com/husamahmud/LeetPush)
  - Hüsam: [GitHub](https://github.com/husamahmud) - [LinkedIn](https://www.linkedin.com/in/husamahmud/)
 
  Happy coding! 🚀
+
+ ![image alt](https://github.com/Hesham-Elwakeel/LeetCode-Solution/blob/master/Python/1-pascals-triangle-science-photo-library.jpg)
