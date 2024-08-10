@@ -10,4 +10,3 @@ Created with :heart: by [LeetPush](https://github.com/husamahmud/LeetPush)
 
  Happy coding! 🚀
 
- ![image alt](https://github.com/Hesham-Elwakeel/LeetCode-Solution/blob/master/Python/1-pascals-triangle-science-photo-library.jpg)
