@@ -2,8 +2,7 @@ Given an integer numRows, return the first numRows of Pascal's triangle.
 
 In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
 
-https://github.com/Hesham-Elwakeel/LeetCode-Solution/blob/947df3c3f658ba72013700c0038caba9a9b92a36/Python/PascalTriangleAnimated2.gif
- 
+![image alt](https://github.com/Hesham-Elwakeel/LeetCode-Solution/blob/master/Python/PascalTriangleAnimated2.gif)
 
 Example 1:
 
