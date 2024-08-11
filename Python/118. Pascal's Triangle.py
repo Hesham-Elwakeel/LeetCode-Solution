@@ -24,12 +24,15 @@ Output: [[1]]
 
 class Solution:
     def generate(self, numRows):
-        triangles = []
-        for i in range(numRows):
-            triangles.append([])
-            for j in range(i + 1):
-                if j == 0 or j == i:
+        triangles = []  # Initialize an empty list to store the rows of Pascal's Triangle
+        for i in range(numRows): # Loop over the number of rows
+            triangles.append([]) # Start a new row
+            for j in range(i + 1): # Loop over the positions in the current row
+                if j == 0 or j == i: # The first and last elements of each row are always 1
                     triangles[i].append(1)
-                else:
+                else: # Other elements are the sum of the two elements directly above it
                     triangles[i].append(triangles[i - 1][j - 1] + triangles[i - 1][j])
         return triangles
+
+solution = Solution()
+print(solution.generate(5))
