@@ -30,7 +30,6 @@ Return the result table in any order.
 
 The result format is in the following example.
  
-
 Example 1:
 
 Input: 
@@ -65,4 +64,11 @@ Alice's balance is (7000 + 7000 - 3000) = 11000.
 Bob's balance is 1000.
 Charlie's balance is (6000 + 6000 - 4000) = 8000.
 
- 
+/* Write your T-SQL query statement below */
+SELECT name, SUM(amount) as balance
+FROM users u 
+LEFT JOIN transactions t
+ON u.account = t.account
+GROUP BY u.name
+HAVING SUM(amount) > 10000;
+
