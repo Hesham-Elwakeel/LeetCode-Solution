@@ -23,13 +23,12 @@ Each row of this table contains all changes made to all accounts.
 amount is positive if the user received money and negative if they transferred money.
 All accounts start with a balance of 0.
  
-
-Write a solution to report the name and balance of users with a balance higher than 10000. The balance of an account is equal to the sum of the amounts of all transactions involving that account.
+Write a solution to report the name and balance of users with a balance higher than 10000.
+The balance of an account is equal to the sum of the amounts of all transactions involving that account.
 
 Return the result table in any order.
 
 The result format is in the following example.
-
  
 
 Example 1:
@@ -65,3 +64,5 @@ Explanation:
 Alice's balance is (7000 + 7000 - 3000) = 11000.
 Bob's balance is 1000.
 Charlie's balance is (6000 + 6000 - 4000) = 8000.
+
+ 
