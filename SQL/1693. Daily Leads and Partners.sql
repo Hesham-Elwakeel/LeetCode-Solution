@@ -17,9 +17,7 @@ For each date_id and make_name, find the number of distinct lead_id's and distin
 Return the result table in any order.
 
 The result format is in the following example.
-
  
-
 Example 1:
 
 Input: 
