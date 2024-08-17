@@ -40,3 +40,10 @@ Explanation:
 The employees with IDs 2 and 8 get 0 bonus because they have an even employee_id.
 The employee with ID 3 gets 0 bonus because their name starts with 'M'.
 The rest of the employees get a 100% bonus.
+
+# Write your MySQL query statement below
+SELECT 
+    employee_id,
+    IF(employee_id %2 = 1 and name not like 'M%', salary, 0) AS bonus
+FROM Employees
+     
