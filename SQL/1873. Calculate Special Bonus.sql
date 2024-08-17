@@ -46,4 +46,12 @@ SELECT
     employee_id,
     IF(employee_id %2 = 1 and name not like 'M%', salary, 0) AS bonus
 FROM Employees
-     
+
+#other solution
+SELECT employee_id, 
+CASE
+    WHEN employee_id % 2 != 0 and name NOT LIKE "M%" THEN salary
+    ELSE 0
+END as bonus
+FROM Employees
+ORDER BY employee_id;
