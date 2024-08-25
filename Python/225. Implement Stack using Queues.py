@@ -57,3 +57,5 @@ class MyStack:
 
     def empty(self):
         return len(self.q1) == 0
+
+ # deque, allows you to add or remove values from both ends of a linear queue
