@@ -30,7 +30,6 @@ myStack.top(); // return 2
 myStack.pop(); // return 2
 myStack.empty(); // return False
  
-
 Constraints:
 
 1 <= x <= 9
