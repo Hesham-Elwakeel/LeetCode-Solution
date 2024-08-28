@@ -55,3 +55,18 @@ Explanation:
 Employees 1, 2, 4, and 5 are working at this company.
 The name of employee 1 is missing.
 The salary of employee 2 is missing.
+
+# Write your MySQL query statement below
+
+select e.employee_id
+    from Employees e
+    left join Salaries s
+    ON s.employee_id = e.employee_id
+    where s.salary is null
+union all
+select s.employee_id
+    from Employees e
+    right join Salaries s
+    ON s.employee_id = e.employee_id
+    where e.name is null
+order by employee_id;
