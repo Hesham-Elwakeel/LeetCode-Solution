@@ -10,7 +10,6 @@ Each row of this table indicates the name of the employee whose ID is employee_i
  
 
 Table: Salaries
-
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
