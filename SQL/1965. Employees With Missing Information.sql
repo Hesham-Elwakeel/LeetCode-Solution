@@ -23,7 +23,6 @@ Write a solution to report the IDs of all the employees with missing information
 The employee's name is missing, or
 The employee's salary is missing.
 Return the result table ordered by employee_id in ascending order.
-
 The result format is in the following example.
 
 Example 1:
