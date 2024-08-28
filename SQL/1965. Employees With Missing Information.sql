@@ -70,3 +70,19 @@ select s.employee_id
     ON s.employee_id = e.employee_id
     where e.name is null
 order by employee_id;
+
+#other sol
+ 
+WITH all_employee_info_cte AS
+(
+    SELECT employee_id FROM Employees
+    UNION ALL
+    SELECT employee_id FROM Salaries
+)
+
+SELECT employee_id
+FROM all_employee_info_cte
+GROUP BY employee_id
+HAVING COUNT(*) != 2
+ORDER BY 1;
+
