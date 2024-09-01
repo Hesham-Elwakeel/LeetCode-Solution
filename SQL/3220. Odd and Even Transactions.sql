@@ -1,5 +1,4 @@
 Table: transactions
-
 +------------------+------+
 | Column Name      | Type | 
 +------------------+------+
