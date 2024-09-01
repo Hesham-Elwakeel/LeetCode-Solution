@@ -19,7 +19,6 @@ Example:
 Input:
 
 transactions table:
-
 +----------------+--------+------------------+
 | transaction_id | amount | transaction_date |
 +----------------+--------+------------------+
