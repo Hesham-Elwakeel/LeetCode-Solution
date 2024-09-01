@@ -13,7 +13,6 @@ Write a solution to find the sum of amounts for odd and even transactions for ea
 Return the result table ordered by transaction_date in ascending order.
 
 The result format is in the following example.
-
  
 Example:
 
