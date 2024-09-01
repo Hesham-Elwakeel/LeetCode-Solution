@@ -8,7 +8,8 @@ Table: transactions
 +------------------+------+
 The transactions_id column uniquely identifies each row in this table.
 Each row of this table contains the transaction id, amount and transaction date.
-Write a solution to find the sum of amounts for odd and even transactions for each day. If there are no odd or even transactions for a specific date, display as 0.
+Write a solution to find the sum of amounts for odd and even transactions for each day. If there are no odd or even transactions for a specific date,
+display as 0.
 
 Return the result table ordered by transaction_date in ascending order.
 The result format is in the following example.
