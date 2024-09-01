@@ -15,7 +15,6 @@ Return the result table ordered by transaction_date in ascending order.
 The result format is in the following example.
 
  
-
 Example:
 
 Input:
