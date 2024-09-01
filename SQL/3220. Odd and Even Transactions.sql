@@ -65,6 +65,7 @@ FROM transactions
 GROUP BY transaction_date
 ORDER BY transaction_date
 
+ 
 # other sol
 SELECT
     transaction_date,
