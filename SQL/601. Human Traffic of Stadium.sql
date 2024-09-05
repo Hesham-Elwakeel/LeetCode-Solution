@@ -48,3 +48,28 @@ Output:
 Explanation: 
 The four rows with ids 5, 6, 7, and 8 have consecutive ids and each of them has >= 100 people attended. Note that row 8 was included even though the visit_date was not the next day after row 7.
 The rows with ids 2 and 3 are not included because we need at least three consecutive ids.
+
+# Write your MySQL query statement below
+WITH CTE AS(
+    SELECT
+        id,
+        visit_date,
+        people,
+        LAG(people, 1) OVER(ORDER BY id) prev1,
+        LAG(people, 2) OVER(ORDER BY id) prev2,
+        LEAD(people, 1) OVER(ORDER BY id) next1,
+        LEAD(people, 2) OVER(ORDER BY id) next2
+
+    FROM stadium
+)
+
+SELECT 
+    id,
+    visit_date,
+    people
+FROM CTE
+WHERE
+    (people >= 100 AND prev1 >= 100 AND prev2 >= 100)
+    OR (people >= 100 AND next1 >= 100 AND next2 >= 100)
+    OR (people >= 100 AND prev1 >= 100 AND next1 >= 100)
+ 
