@@ -18,7 +18,6 @@ Return the result table ordered by visit_date in ascending order.
 The result format is in the following example.
 
  
-
 Example 1:
 
 Input: 
