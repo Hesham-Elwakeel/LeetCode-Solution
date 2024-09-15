@@ -44,11 +44,14 @@ Constraints:
 0 <= val <= 100
 
 
+
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
-        i = 0
-        for num in nums:
-            if num != val:
-                nums[i] = num
-                i += 1
-        return i
+        i = 0  # Initialize an index pointer i at 0
+        for num in nums:  # Loop through each element in the list 'nums'
+            if num != val:  # If the current element is not equal to 'val'
+                nums[i] = num  # Place the current element in the position of index 'i'
+                i += 1  # Increment the index 'i' to point to the next position
+        return i  # Return the new length of the modified list
+
+
