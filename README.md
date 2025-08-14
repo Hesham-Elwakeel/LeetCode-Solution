@@ -10,3 +10,11 @@ Created with :heart: by [LeetPush](https://github.com/husamahmud/LeetPush)
 
  Happy coding! 🚀
 
+
+<!---LeetCode Topics Start-->
+# LeetCode Topics
+## String
+|  |
+| ------- |
+| [2346-largest-3-same-digit-number-in-string](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/2346-largest-3-same-digit-number-in-string) |
+<!---LeetCode Topics End-->
