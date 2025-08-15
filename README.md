@@ -17,4 +17,8 @@ Created with :heart: by [LeetPush](https://github.com/husamahmud/LeetPush)
 |  |
 | ------- |
 | [2346-largest-3-same-digit-number-in-string](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/2346-largest-3-same-digit-number-in-string) |
+## Database
+|  |
+| ------- |
+| [0177-nth-highest-salary](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0177-nth-highest-salary) |
 <!---LeetCode Topics End-->
