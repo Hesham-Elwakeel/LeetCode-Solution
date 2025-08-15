@@ -21,4 +21,16 @@ Created with :heart: by [LeetPush](https://github.com/husamahmud/LeetPush)
 |  |
 | ------- |
 | [0177-nth-highest-salary](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0177-nth-highest-salary) |
+## Math
+|  |
+| ------- |
+| [0342-power-of-four](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0342-power-of-four) |
+## Bit Manipulation
+|  |
+| ------- |
+| [0342-power-of-four](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0342-power-of-four) |
+## Recursion
+|  |
+| ------- |
+| [0342-power-of-four](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0342-power-of-four) |
 <!---LeetCode Topics End-->
