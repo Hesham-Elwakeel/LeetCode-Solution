@@ -26,41 +26,63 @@ jobs:
         run: |
           mkdir -p Python SQL CPP R "AI-Tools" PowerBI
 
+          # Function to merge problem description + solution
+          merge_and_move() {
+            file=$1
+            folder=$2
+            ext=$3
+            base=$(basename "$file" ".$ext")
+            readme="${base}.md"
+            out="$folder/$file"
+
+            echo ">>> Processing $file into $out"
+
+            if [ -f "$readme" ]; then
+              cat "$readme" > "$out"
+              echo "" >> "$out"
+              echo "```$ext" >> "$out"
+              cat "$file" >> "$out"
+              echo "```" >> "$out"
+              git rm -f "$readme"
+            else
+              echo "### Problem Description Missing" > "$out"
+              cat "$file" >> "$out"
+            fi
+
+            git rm -f "$file"
+          }
+
+          # Python
           for file in *.py; do
             [ -e "$file" ] || continue
-            echo "### Problem Description + Solution" > "Python/$file"
-            cat "$file" >> "Python/$file"
-            git rm -f "$file"
+            merge_and_move "$file" "Python" "py"
           done
 
+          # SQL
           for file in *.sql; do
             [ -e "$file" ] || continue
-            echo "### Problem Description + Solution" > "SQL/$file"
-            cat "$file" >> "SQL/$file"
-            git rm -f "$file"
+            merge_and_move "$file" "SQL" "sql"
           done
 
+          # CPP
           for file in *.cpp; do
             [ -e "$file" ] || continue
-            echo "### Problem Description + Solution" > "CPP/$file"
-            cat "$file" >> "CPP/$file"
-            git rm -f "$file"
+            merge_and_move "$file" "CPP" "cpp"
           done
 
+          # R
           for file in *.r; do
             [ -e "$file" ] || continue
-            echo "### Problem Description + Solution" > "R/$file"
-            cat "$file" >> "R/$file"
-            git rm -f "$file"
+            merge_and_move "$file" "R" "r"
           done
 
+          # AI Notebooks
           for file in *.ipynb; do
             [ -e "$file" ] || continue
-            echo "### Notebook Problem + Solution" > "AI-Tools/$file"
-            cat "$file" >> "AI-Tools/$file"
-            git rm -f "$file"
+            merge_and_move "$file" "AI-Tools" "ipynb"
           done
 
+          # PowerBI files
           for file in *.pbix; do
             [ -e "$file" ] || continue
             mv "$file" "PowerBI/$file"
@@ -72,5 +94,5 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add .
-          git commit -m "Auto-move: Organized solutions by language" || echo "No changes to commit"
+          git commit -m "Auto-move: Organized solutions by language with descriptions" || echo "No changes to commit"
           git push
