@@ -1,85 +1,76 @@
-name: Auto Organize LeetHub Submissions
+name: Auto Organize LeetCode Solutions
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - "*.py"
+      - "*.sql"
+      - "*.cpp"
+      - "*.r"
+      - "*.ipynb"
+      - "*.pbix"
+      - "*.txt"
+      - "*.md"
+
+permissions:
+  contents: write
 
 jobs:
-  organize:
+  move-files:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Merge README with code and move files
+      - name: Move solution files to correct folders
         run: |
-          import os, glob, shutil
+          mkdir -p Python SQL CPP R "AI-Tools" PowerBI
 
-          LANG_MAP = {
-              ".py": "Python",
-              ".sql": "SQL",
-              ".cpp": "CPP",
-              ".ipynb": "AI-Tools",
-              ".pbix": "PowerBI",
-              ".r": "R"
-          }
+          for file in *.py; do
+            [ -e "$file" ] || continue
+            echo "### Problem Description + Solution" > "Python/$file"
+            cat "$file" >> "Python/$file"
+            git rm -f "$file"
+          done
 
-          # دور على كل README
-          for readme in glob.glob("*/README.md"):
-              folder = os.path.dirname(readme)
-              code_files = glob.glob(os.path.join(folder, "*.*"))
-              code_files = [f for f in code_files if not f.endswith("README.md")]
+          for file in *.sql; do
+            [ -e "$file" ] || continue
+            echo "### Problem Description + Solution" > "SQL/$file"
+            cat "$file" >> "SQL/$file"
+            git rm -f "$file"
+          done
 
-              for code_file in code_files:
-                  ext = os.path.splitext(code_file)[1]
-                  target_dir = LANG_MAP.get(ext)
-                  if not target_dir:
-                      continue
+          for file in *.cpp; do
+            [ -e "$file" ] || continue
+            echo "### Problem Description + Solution" > "CPP/$file"
+            cat "$file" >> "CPP/$file"
+            git rm -f "$file"
+          done
 
-                  os.makedirs(target_dir, exist_ok=True)
+          for file in *.r; do
+            [ -e "$file" ] || continue
+            echo "### Problem Description + Solution" > "R/$file"
+            cat "$file" >> "R/$file"
+            git rm -f "$file"
+          done
 
-                  # اقرأ README
-                  with open(readme, "r", encoding="utf-8") as f:
-                      problem_text = f.read()
+          for file in *.ipynb; do
+            [ -e "$file" ] || continue
+            echo "### Notebook Problem + Solution" > "AI-Tools/$file"
+            cat "$file" >> "AI-Tools/$file"
+            git rm -f "$file"
+          done
 
-                  # اقرأ الكود
-                  with open(code_file, "r", encoding="utf-8") as f:
-                      code_text = f.read()
+          for file in *.pbix; do
+            [ -e "$file" ] || continue
+            mv "$file" "PowerBI/$file"
+            git rm -f "$file"
+          done
 
-                  # ادمجهم (شرح كـ comments فوق الكود)
-                  if ext in [".py", ".r"]:
-                      merged = "\n".join([f"# {line}" for line in problem_text.splitlines()]) + "\n\n" + code_text
-                  elif ext == ".sql":
-                      merged = "\n".join([f"-- {line}" for line in problem_text.splitlines()]) + "\n\n" + code_text
-                  elif ext == ".cpp":
-                      merged = "\n".join([f"// {line}" for line in problem_text.splitlines()]) + "\n\n" + code_text
-                  else:
-                      merged = problem_text + "\n\n" + code_text
-
-                  # احفظ في المكان الجديد
-                  out_name = os.path.basename(code_file)
-                  out_path = os.path.join(target_dir, out_name)
-                  with open(out_path, "w", encoding="utf-8") as f:
-                      f.write(merged)
-
-                  # امسح النسخة القديمة
-                  os.remove(code_file)
-                  os.remove(readme)
-
-              # امسح الفولدر لو فاضي
-              if not os.listdir(folder):
-                  os.rmdir(folder)
-
-      - name: Commit changes
+      - name: Commit organized files
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
           git add .
-          git commit -m "Organize submissions with problem statement" || echo "No changes"
+          git commit -m "Auto-move: Organized solutions by language" || echo "No changes to commit"
           git push
