@@ -2,16 +2,8 @@ name: Auto Organize LeetHub Submissions
 
 on:
   push:
-    paths:
-      - "*.py"
-      - "*.sql"
-      - "*.cpp"
-      - "*.java"
-      - "*.ipynb"
-      - "*.r"
-      - "*.jl"
-      - "*.pbix"
-      - "README.md"
+    branches:
+      - main
 
 jobs:
   organize:
@@ -20,49 +12,74 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Move solutions to correct folders
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Merge README with code and move files
         run: |
-          # إنشاء المجلدات
-          mkdir -p Python SQL CPP Java R Julia AI-Tools PowerBI
+          import os, glob, shutil
 
-          for f in *.{py,sql,cpp,java,ipynb,r,jl,pbix}; do
-            [ -e "$f" ] || continue
+          LANG_MAP = {
+              ".py": "Python",
+              ".sql": "SQL",
+              ".cpp": "CPP",
+              ".ipynb": "AI-Tools",
+              ".pbix": "PowerBI",
+              ".r": "R"
+          }
 
-            problem=$(basename "$f" | cut -d. -f1)
-            readme="README.md"
+          # دور على كل README
+          for readme in glob.glob("*/README.md"):
+              folder = os.path.dirname(readme)
+              code_files = glob.glob(os.path.join(folder, "*.*"))
+              code_files = [f for f in code_files if not f.endswith("README.md")]
 
-            case "$f" in
-              *.py) out="Python/$f" ;;
-              *.sql) out="SQL/$f" ;;
-              *.cpp) out="CPP/$f" ;;
-              *.java) out="Java/$f" ;;
-              *.r) out="R/$f" ;;
-              *.jl) out="Julia/$f" ;;
-              *.ipynb) out="AI-Tools/$f" ;;
-              *.pbix) out="PowerBI/$f" ;;
-            esac
+              for code_file in code_files:
+                  ext = os.path.splitext(code_file)[1]
+                  target_dir = LANG_MAP.get(ext)
+                  if not target_dir:
+                      continue
 
-            # دمج الشرح + الحل داخل ملف واحد
-            if [ -f "$readme" ]; then
-              {
-                echo '"""'
-                cat "$readme"
-                echo '"""'
-                echo ""
-                cat "$f"
-              } > "$out"
-            else
-              cp "$f" "$out"
-            fi
+                  os.makedirs(target_dir, exist_ok=True)
 
-            # حذف النسخة اللي في الجذر
-            rm "$f"
-          done
+                  # اقرأ README
+                  with open(readme, "r", encoding="utf-8") as f:
+                      problem_text = f.read()
+
+                  # اقرأ الكود
+                  with open(code_file, "r", encoding="utf-8") as f:
+                      code_text = f.read()
+
+                  # ادمجهم (شرح كـ comments فوق الكود)
+                  if ext in [".py", ".r"]:
+                      merged = "\n".join([f"# {line}" for line in problem_text.splitlines()]) + "\n\n" + code_text
+                  elif ext == ".sql":
+                      merged = "\n".join([f"-- {line}" for line in problem_text.splitlines()]) + "\n\n" + code_text
+                  elif ext == ".cpp":
+                      merged = "\n".join([f"// {line}" for line in problem_text.splitlines()]) + "\n\n" + code_text
+                  else:
+                      merged = problem_text + "\n\n" + code_text
+
+                  # احفظ في المكان الجديد
+                  out_name = os.path.basename(code_file)
+                  out_path = os.path.join(target_dir, out_name)
+                  with open(out_path, "w", encoding="utf-8") as f:
+                      f.write(merged)
+
+                  # امسح النسخة القديمة
+                  os.remove(code_file)
+                  os.remove(readme)
+
+              # امسح الفولدر لو فاضي
+              if not os.listdir(folder):
+                  os.rmdir(folder)
 
       - name: Commit changes
         run: |
-          git config --global user.name "LeetHub Bot"
-          git config --global user.email "leetbot@example.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "Auto-organized LeetHub submissions" || echo "No changes"
+          git commit -m "Organize submissions with problem statement" || echo "No changes"
           git push
