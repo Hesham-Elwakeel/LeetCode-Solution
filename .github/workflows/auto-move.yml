@@ -1,185 +1,68 @@
-name: Auto Organize LeetCode Solutions
+name: Auto Organize LeetHub Submissions
 
 on:
   push:
-    branches: [ master ]   # غيّرها لـ main لو فرعك main
-  workflow_dispatch:       # تشغيل يدوي من تبويب Actions
-
-permissions:
-  contents: write
+    paths:
+      - "*.py"
+      - "*.sql"
+      - "*.cpp"
+      - "*.java"
+      - "*.ipynb"
+      - "*.r"
+      - "*.jl"
+      - "*.pbix"
+      - "README.md"
 
 jobs:
   organize:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-      - name: Merge README with solution and clean up
-        shell: bash
+      - name: Move solutions to correct folders
         run: |
-          set -euo pipefail
-          shopt -s nullglob
+          # إنشاء المجلدات
+          mkdir -p Python SQL CPP Java R Julia AI-Tools PowerBI
 
-          # حضّر فولدرات اللغات
-          mkdir -p "Python" "SQL" "C++" "R" "Java" "Scala" "Julia" "MATLAB" "Jupyter" "PowerBI"
+          for f in *.{py,sql,cpp,java,ipynb,r,jl,pbix}; do
+            [ -e "$f" ] || continue
 
-          # لف على الدلائل اللي في جذر الريبو
-          for dir in */ ; do
-            case "$dir" in
-              ".github/"|"Python/"|"SQL/"|"C++/"|"R/"|"Java/"|"Scala/"|"Julia/"|"MATLAB/"|"Jupyter/"|"PowerBI/"|".git/") continue ;;
+            problem=$(basename "$f" | cut -d. -f1)
+            readme="README.md"
+
+            case "$f" in
+              *.py) out="Python/$f" ;;
+              *.sql) out="SQL/$f" ;;
+              *.cpp) out="CPP/$f" ;;
+              *.java) out="Java/$f" ;;
+              *.r) out="R/$f" ;;
+              *.jl) out="Julia/$f" ;;
+              *.ipynb) out="AI-Tools/$f" ;;
+              *.pbix) out="PowerBI/$f" ;;
             esac
 
-            # لازم يكون فيه README.md (ده اللي ليثهاب/ليتبوش بيحطّه)
-            if [ ! -f "${dir}README.md" ]; then
-              continue
-            fi
-
-            problem_name=$(basename "$dir")
-            readme="${dir}README.md"
-
-            # دور على أول ملف حل لكل لغة داخل فولدر المسألة (المستوى الأول)
-            py_file=$(find "$dir" -maxdepth 1 -type f -name "*.py"      -print -quit || true)
-            sql_file=$(find "$dir" -maxdepth 1 -type f -name "*.sql"     -print -quit || true)
-            r_file=$(find "$dir" -maxdepth 1 -type f -name "*.R"         -print -quit || true)
-            cpp_file=$(find "$dir" -maxdepth 1 -type f \( -name "*.cpp" -o -name "*.hpp" -o -name "*.h" \) -print -quit || true)
-            java_file=$(find "$dir" -maxdepth 1 -type f -name "*.java"   -print -quit || true)
-            scala_file=$(find "$dir" -maxdepth 1 -type f -name "*.scala" -print -quit || true)
-            jl_file=$(find "$dir" -maxdepth 1 -type f -name "*.jl"       -print -quit || true)
-            m_file=$(find "$dir" -maxdepth 1 -type f -name "*.m"         -print -quit || true)
-            ipynb_file=$(find "$dir" -maxdepth 1 -type f -name "*.ipynb" -print -quit || true)
-            pbix_file=$(find "$dir" -maxdepth 1 -type f \( -name "*.pbix" -o -name "*.pbit" \) -print -quit || true)
-
-            # Python
-            if [ -n "$py_file" ]; then
-              out="Python/${problem_name}.py"
+            # دمج الشرح + الحل داخل ملف واحد
+            if [ -f "$readme" ]; then
               {
                 echo '"""'
                 cat "$readme"
                 echo '"""'
-                echo
-                cat "$py_file"
+                echo ""
+                cat "$f"
               } > "$out"
+            else
+              cp "$f" "$out"
             fi
 
-            # SQL
-            if [ -n "$sql_file" ]; then
-              out="SQL/${problem_name}.sql"
-              {
-                echo '-- Problem Description'
-                cat "$readme"
-                echo
-                cat "$sql_file"
-              } > "$out"
-            fi
-
-            # R
-            if [ -n "$r_file" ]; then
-              out="R/${problem_name}.R"
-              {
-                echo '# Problem Description'
-                cat "$readme"
-                echo
-                cat "$r_file"
-              } > "$out"
-            fi
-
-            # C++
-            if [ -n "$cpp_file" ]; then
-              out="C++/${problem_name}.cpp"
-              {
-                echo "/*"
-                cat "$readme"
-                echo "*/"
-                echo
-                cat "$cpp_file"
-              } > "$out"
-            fi
-
-            # Java
-            if [ -n "$java_file" ]; then
-              out="Java/${problem_name}.java"
-              {
-                echo "/*"
-                cat "$readme"
-                echo "*/"
-                echo
-                cat "$java_file"
-              } > "$out"
-            fi
-
-            # Scala
-            if [ -n "$scala_file" ]; then
-              out="Scala/${problem_name}.scala"
-              {
-                echo "/*"
-                cat "$readme"
-                echo "*/"
-                echo
-                cat "$scala_file"
-              } > "$out"
-            fi
-
-            # Julia
-            if [ -n "$jl_file" ]; then
-              out="Julia/${problem_name}.jl"
-              {
-                echo "#="
-                cat "$readme"
-                echo "=#"
-                echo
-                cat "$jl_file"
-              } > "$out"
-            fi
-
-            # MATLAB / Octave
-            if [ -n "$m_file" ]; then
-              out="MATLAB/${problem_name}.m"
-              {
-                echo "% Problem Description"
-                cat "$readme"
-                echo
-                cat "$m_file"
-              } > "$out"
-            fi
-
-            # Jupyter Notebook: أضف الـ README كأول خلية Markdown
-            if [ -n "$ipynb_file" ]; then
-              python3 - "$problem_name" "$ipynb_file" "$readme" << 'PYCODE'
-import json, sys, pathlib
-problem, ipynb_in, readme_path = sys.argv[1:]
-out = pathlib.Path("Jupyter") / f"{problem}.ipynb"
-
-with open(ipynb_in, "r", encoding="utf-8") as f:
-    nb = json.load(f)
-
-with open(readme_path, "r", encoding="utf-8") as f:
-    readme = f.read()
-
-md_cell = {"cell_type": "markdown", "metadata": {}, "source": readme.splitlines(True)}
-nb["cells"] = [md_cell] + nb.get("cells", [])
-nb.setdefault("metadata", {}).setdefault("kernelspec", {"name":"python3","language":"python","display_name":"Python 3"})
-with open(out, "w", encoding="utf-8") as f:
-    json.dump(nb, f, ensure_ascii=False, indent=1)
-PYCODE
-            fi
-
-            # Power BI (ملفات ثنائية؛ بننقلها فقط)
-            if [ -n "$pbix_file" ]; then
-              ext="${pbix_file##*.}"
-              cp "$pbix_file" "PowerBI/${problem_name}.${ext}"
-            fi
-
-            # امسح فولدر المسألة بعد الدمج (علشان مايبقاش في نسختين)
-            rm -rf "$dir"
+            # حذف النسخة اللي في الجذر
+            rm "$f"
           done
 
-      - name: Commit and push changes
+      - name: Commit changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Organize: merge README with solutions and remove original folders" || exit 0
+          git config --global user.name "LeetHub Bot"
+          git config --global user.email "leetbot@example.com"
+          git add .
+          git commit -m "Auto-organized LeetHub submissions" || echo "No changes"
           git push
