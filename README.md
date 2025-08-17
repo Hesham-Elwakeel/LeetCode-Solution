@@ -33,4 +33,24 @@ Created with :heart: by [LeetPush](https://github.com/husamahmud/LeetPush)
 |  |
 | ------- |
 | [0342-power-of-four](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0342-power-of-four) |
+## Array
+|  |
+| ------- |
+| [3790-fruits-into-baskets-ii](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/3790-fruits-into-baskets-ii) |
+## Binary Search
+|  |
+| ------- |
+| [3790-fruits-into-baskets-ii](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/3790-fruits-into-baskets-ii) |
+## Segment Tree
+|  |
+| ------- |
+| [3790-fruits-into-baskets-ii](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/3790-fruits-into-baskets-ii) |
+## Simulation
+|  |
+| ------- |
+| [3790-fruits-into-baskets-ii](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/3790-fruits-into-baskets-ii) |
+## Ordered Set
+|  |
+| ------- |
+| [3790-fruits-into-baskets-ii](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/3790-fruits-into-baskets-ii) |
 <!---LeetCode Topics End-->
