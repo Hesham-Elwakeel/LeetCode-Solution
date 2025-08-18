@@ -39,6 +39,7 @@ Created with :heart: by [LeetPush](https://github.com/husamahmud/LeetPush)
 ## Array
 |  |
 | ------- |
+| [0001-two-sum](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0001-two-sum) |
 | [3790-fruits-into-baskets-ii](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/3790-fruits-into-baskets-ii) |
 ## Binary Search
 |  |
@@ -56,4 +57,8 @@ Created with :heart: by [LeetPush](https://github.com/husamahmud/LeetPush)
 |  |
 | ------- |
 | [3790-fruits-into-baskets-ii](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/3790-fruits-into-baskets-ii) |
+## Hash Table
+|  |
+| ------- |
+| [0001-two-sum](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0001-two-sum) |
 <!---LeetCode Topics End-->
