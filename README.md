@@ -34,6 +34,7 @@ Created with :heart: by [LeetPush](https://github.com/husamahmud/LeetPush)
 ## Recursion
 |  |
 | ------- |
+| [0021-merge-two-sorted-lists](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0021-merge-two-sorted-lists) |
 | [0231-power-of-two](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0231-power-of-two) |
 | [0342-power-of-four](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0342-power-of-four) |
 ## Array
@@ -61,4 +62,8 @@ Created with :heart: by [LeetPush](https://github.com/husamahmud/LeetPush)
 |  |
 | ------- |
 | [0001-two-sum](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0001-two-sum) |
+## Linked List
+|  |
+| ------- |
+| [0021-merge-two-sorted-lists](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0021-merge-two-sorted-lists) |
 <!---LeetCode Topics End-->
