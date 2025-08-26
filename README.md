@@ -41,6 +41,7 @@ Created with :heart: by [LeetPush](https://github.com/husamahmud/LeetPush)
 |  |
 | ------- |
 | [0001-two-sum](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0001-two-sum) |
+| [0015-3sum](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0015-3sum) |
 | [3790-fruits-into-baskets-ii](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/3790-fruits-into-baskets-ii) |
 ## Binary Search
 |  |
@@ -66,4 +67,12 @@ Created with :heart: by [LeetPush](https://github.com/husamahmud/LeetPush)
 |  |
 | ------- |
 | [0021-merge-two-sorted-lists](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0021-merge-two-sorted-lists) |
+## Two Pointers
+|  |
+| ------- |
+| [0015-3sum](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0015-3sum) |
+## Sorting
+|  |
+| ------- |
+| [0015-3sum](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0015-3sum) |
 <!---LeetCode Topics End-->
