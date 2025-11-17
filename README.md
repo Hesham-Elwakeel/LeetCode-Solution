@@ -42,6 +42,7 @@ Created with :heart: by [LeetPush](https://github.com/husamahmud/LeetPush)
 | ------- |
 | [0001-two-sum](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0001-two-sum) |
 | [0015-3sum](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0015-3sum) |
+| [1548-check-if-all-1s-are-at-least-length-k-places-away](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/1548-check-if-all-1s-are-at-least-length-k-places-away) |
 | [3790-fruits-into-baskets-ii](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/3790-fruits-into-baskets-ii) |
 ## Binary Search
 |  |
