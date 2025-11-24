@@ -21,6 +21,7 @@ Created with :heart: by [LeetPush](https://github.com/husamahmud/LeetPush)
 |  |
 | ------- |
 | [0177-nth-highest-salary](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/0177-nth-highest-salary) |
+| [1741-find-total-time-spent-by-each-employee](https://github.com/Hesham-Elwakeel/LeetCode-Solution/tree/master/1741-find-total-time-spent-by-each-employee) |
 ## Math
 |  |
 | ------- |
